@@ -3,7 +3,7 @@ import csv
 import sys
 import json
 import login
-from backend_functions import speech, integrate
+from backend_functions import speech, integrate, record_voice
 curr_path = os.path.dirname(os.path.realpath(__file__))
 par_dir = os.path.abspath(os.path.join(curr_path, os.pardir))
 
@@ -32,7 +32,7 @@ def main():
                  name = row[0]
      talk = 0
      while(apiIntent!="bye"):
-        stringu=raw_input("User : ")
+        stringu=record_voice.now()#raw_input("User : ")
         stringu=speech.punctuate(stringu)
         userSentiment=str(speech.sentiment(stringu))
         print ("User Sentiment : "+userSentiment)

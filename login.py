@@ -1,8 +1,8 @@
 import os
 import csv
-from settings import username,account_id
 
 def login_func():
+	print("Running facial recognition...")
 	os.system('echo -n > shellOut.txt')
 	os.system('face_recognition face_recognition/known/ face_recognition/unknown/  > shellOut.txt')
 
@@ -28,12 +28,14 @@ def login_func():
 		else:
 			exit()
 	else:
+		print ("Facial match found in database")
 		u=raw_input("Enter username : ")
 		p=raw_input("Enter password : ")
 		confirmed_user=[]
 		for user in possible_user:
 			if(user[1]==u and user[2]==p):
 				confirmed_user=user
+				print ("Logged in")
 				break
 		if(len(confirmed_user)==0):
 			print("User not found")
