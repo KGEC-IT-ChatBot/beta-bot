@@ -6,6 +6,7 @@ def login_func():
 	print("Running facial recognition...")
 	os.system('echo -n > shellOut.txt')
 	print(curr_path+"login")
+	os.system("fswebcam -d /dev/video0 -r 640x480 --jpeg 85 -f 5 face_recognition/unknown/user.jpg")
 	os.system('face_recognition /home/moumita/chatbot_final/beta-bot/face_recognition/known/ /home/moumita/chatbot_final/beta-bot/face_recognition/unknown/  > shellOut.txt')
 
 	
