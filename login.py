@@ -2,11 +2,13 @@ import os
 import csv
 
 def login_func():
+	curr_path = os.path.dirname(os.path.realpath(__file__))
 	print("Running facial recognition...")
 	os.system('echo -n > shellOut.txt')
-	os.system('face_recognition face_recognition/known/ face_recognition/unknown/  > shellOut.txt')
+	print(curr_path+"login")
+	os.system('face_recognition /home/moumita/chatbot_final/beta-bot/face_recognition/known/ /home/moumita/chatbot_final/beta-bot/face_recognition/unknown/  > shellOut.txt')
 
-	curr_path = os.path.dirname(os.path.realpath(__file__))
+	
 	file=open("shellOut.txt","r")
 	lines=file.readlines()
 	file.close()
@@ -15,7 +17,8 @@ def login_func():
 
 	for line in lines:
 		names.append(line[line.index(",")+1:line.index('\n')])
-	with open("data/credentials.csv",'r') as file:
+	print (curr_path)
+	with open(os.path.join(curr_path,"data/credentials.csv")) as file:
 		reader = csv.reader(file, delimiter= ',')
 		for row in reader:
 			if(row[0] in names):

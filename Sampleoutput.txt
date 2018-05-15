@@ -1,0 +1,1 @@
+loan_id account_id date amount duration payments status ; disp_id client_id type ; account_id district_id frequency date ; client_id birth_number 

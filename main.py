@@ -25,7 +25,7 @@ def main():
          username, account_id = login.login_func()
      name = ""
      integrate.printOut(int(account_id))
-     with open(os.path.join(par_dir, "bot-data_analysis-management/data/credentials.csv"), 'r') as file:
+     with open(os.path.join(curr_path, "data/credentials.csv")) as file:
          reader = csv.reader(file, delimiter=',')
          for row in reader:
              if (row[1] == username):
