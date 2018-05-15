@@ -3,7 +3,7 @@ import csv
 import sys
 import json
 import login
-from backend_functions import speech, integrate, record_voice
+from backend_functions import speech, integrate1, record_voice
 curr_path = os.path.dirname(os.path.realpath(__file__))
 par_dir = os.path.abspath(os.path.join(curr_path, os.pardir))
 
@@ -24,7 +24,7 @@ def main():
      while (username == -1 and account_id == -1):
          username, account_id = login.login_func()
      name = ""
-     integrate.printOut(int(account_id))
+     integrate1.printOut(int(account_id))
      with open(os.path.join(curr_path, "data/credentials.csv")) as file:
          reader = csv.reader(file, delimiter=',')
          for row in reader:

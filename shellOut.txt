@@ -1,1 +1,2 @@
-/home/moumita/chatbot_final/beta-bot/face_recognition/unknown/user.jpg,Anamika Dey
+/home/moumita/chatbot_final/beta-bot/face_recognition/unknown/user.jpg,Moumita Das
+/home/moumita/chatbot_final/beta-bot/face_recognition/unknown/user.jpg,Deepsikha Roy
