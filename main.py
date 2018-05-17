@@ -1,9 +1,11 @@
 import os.path
+import os
 import csv
 import sys
 import json
 import login
-from backend_functions import speech, integrate1, record_voice
+import re
+from backend_functions import speech, record_voice
 curr_path = os.path.dirname(os.path.realpath(__file__))
 par_dir = os.path.abspath(os.path.join(curr_path, os.pardir))
 
@@ -24,8 +26,8 @@ def main():
      while (username == -1 and account_id == -1):
          username, account_id = login.login_func()
      name = ""
-     integrate1.printOut(int(account_id))
-     with open(os.path.join(curr_path, "data/credentials.csv")) as file:
+     #integrate.printOut(int(account_id))
+     with open(os.path.join(curr_path, "data/credential.csv")) as file:
          reader = csv.reader(file, delimiter=',')
          for row in reader:
              if (row[1] == username):
@@ -57,11 +59,29 @@ def main():
             apiIntent = ""
         if (talk==0):
             apiResp="Hello "+name+"! How may I help you?"
+            speech.say(apiResp)
+            print("Agent : " + apiResp)
         else:
-            apiResp=json_obj["result"]["fulfillment"]["speech"]
-        #print("Intent name: "+apiIntent)
-        speech.say(apiResp)
-        print("Agent : "+apiResp)
+            if(apiIntent=="balance_desc"):
+                os.system("python backend_functions/banking.py balance "+str(account_id))
+            elif (apiIntent == "transfer"):
+                amount=json_obj["result"]["parameters"]["unit-currency"]
+                if (amount!=""):
+                    amount = filter(lambda x: x.isdigit(), amount)
+                elif (amount==""):
+                    amount=json_obj["result"]["parameters"]["number"]
+                while(amount==""):
+                    speech.say("Please enter the amount")
+                    amount=raw_input("Agent : Please enter the amount")
+                    amount=filter(lambda x: x.isdigit(), amount)
+                print("python backend_functions/banking.py transaction " + str(account_id)
+                +' "' + str(json_obj["result"]["parameters"]["userName"]) + '" ' + str(amount))
+                os.system("python backend_functions/banking.py transaction " + str(account_id)
+                          +' "'+str(json_obj["result"]["parameters"]["userName"])+'" '+str(amount))
+            else:
+                apiResp=json_obj["result"]["fulfillment"]["speech"]
+                speech.say(apiResp)
+                print("Agent : "+apiResp)
         talk=talk+1
 if __name__ == '__main__':
 	main()

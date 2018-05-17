@@ -1,0 +1,2 @@
+loan_id account_id date amount duration payments status ; disp_id client_id type ; account_id district_id frequency date ; client_id birth_number 
+4959,2,940105,80952,24,3373.00,A,;2,2,OWNER,;1,POPLATEK MESICNE,930226,;29402,ST,89597016,3372.70,UVER,29403,QR,13943797,7266.00,SIPO,;29402,ST,89597016,3372.70,UVER,29403,QR,13943797,7266.00,SIPO,;2,450204,;

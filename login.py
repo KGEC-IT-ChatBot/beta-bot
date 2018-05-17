@@ -18,8 +18,8 @@ def login_func():
 
 	for line in lines:
 		names.append(line[line.index(",")+1:line.index('\n')])
-	print (curr_path)
-	with open(os.path.join(curr_path,"data/credentials.csv")) as file:
+	#print (curr_path)
+	with open(os.path.join(curr_path,"data/credential.csv")) as file:
 		reader = csv.reader(file, delimiter= ',')
 		for row in reader:
 			if(row[0] in names):
